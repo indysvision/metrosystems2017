@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Invite Teacher</title>
+</head>
+<body>
+
+	      <div class="row">
+            <form action = "/addTeacher">
+               <div class="row">
+                  <div class="col-xs-3">          
+                     <input type="text" class="form-control" id="name" placeholder="Name" name="name" required="true"/>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-12" style="height:5px;"></div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-3">          
+                     <input type="text" class="form-control" id="emailCreate" placeholder="E-mail a@b.c" name="emailCreate" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="true"/>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-12" style="height:5px;"></div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-3">          
+                     <input type="text" class="form-control" id="categorie" placeholder=Categorie" name="categorie" required="true"/>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-12" style="height:5px;"></div>
+               </div>
+
+               <div class="row">
+                  <div class="col-xs-3">
+                     <input type="submit" class="btn btn-info" id="createBtn" value="Trimite"/>
+                  </div>
+                
+               </div>
+            </form>
+         </div>
+
+
+	<div th:replace="fragments/footer :: footer"/> 
+</body>
+</html>
