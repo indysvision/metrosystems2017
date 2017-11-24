@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<div th:fragment="inviteTeacher">
+ <div class="container">
 	      <div class="row">
             <form action = "/addTeacher">
                <div class="row">
@@ -26,7 +28,7 @@
                </div>
                <div class="row">
                   <div class="col-xs-3">          
-                     <input type="text" class="form-control" id="categorie" placeholder=Categorie" name="categorie" required="true"/>
+                     <input type="text" class="form-control" id="categorie" placeholder="Categorie" name="categorie" required="true"/>
                   </div>
                </div>
                <div class="row">
@@ -42,7 +44,7 @@
             </form>
          </div>
 
-
-	<div th:replace="fragments/footer :: footer"/> 
+</div>
+</div>
 </body>
 </html>
