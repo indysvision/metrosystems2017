@@ -7,7 +7,14 @@
 </head>
 <body>
 
+<div th:switch= "${mode}">
+	<p th:case="'main'" >
 <div th:replace="fragments/inviteTeacher :: inviteTeacher"/> 
+</p>
+<p th:case="'mailSent'" >
+<div th:replace="fragments/inviteTeacher :: inviteTeacherSent"/> 
+</p>
+</div>
 <div th:replace="fragments/footer :: footer"/> 
 
 </body>

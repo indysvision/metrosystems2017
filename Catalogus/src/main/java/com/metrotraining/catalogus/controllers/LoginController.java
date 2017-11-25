@@ -25,28 +25,26 @@ public class LoginController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login(Model model) {
-		
-		return "mainTeacher";
+		model.addAttribute("mode", "main");
+		return "addTeacher";
 	}
 	
 	@RequestMapping(value = "/addTeacher", method = RequestMethod.GET)
-	public String saveUser(@RequestParam(value = "name",required = false) String name,
-			@RequestParam(value = "emailCreate",required = false) String emailCreate,
-			@RequestParam(value = "category",required = false) String category,
+	public String saveUser(@RequestParam(value = "name") String name,
+			@RequestParam(value = "emailCreate") String emailCreate,
+			@RequestParam(value = "category") String category,
 			 Model model) {
-		System.out.println("0");
 
 		
 
 	        Mail mail = new Mail();
 	        mail.setFrom("no-reply@memorynotfound.com");
-	        mail.setTo("moraru.diana90@yahoo.com");
-	        mail.setSubject("Sending Email with Thymeleaf HTML Template Example");
+	        mail.setTo(emailCreate);
+	        mail.setSubject("You are invited to join class");
 
 	        Map emailModel = new HashMap();
-	        emailModel.put("name", "Memorynotfound.com");
-	        emailModel.put("location", "Belgium");
-	        emailModel.put("signature", "https://memorynotfound.com");
+	        emailModel.put("connect_string", "http://localhost:8090/activateTeacher");
+	        emailModel.put("name", name);
 	        mail.setModel(emailModel);
 
 	     
@@ -62,10 +60,19 @@ public class LoginController {
 		
 		
 		
-		model.addAttribute("mode", "createUser");
-		return "mainTeacher";
+			model.addAttribute("mode", "mailSent");
+		return "addTeacher";
 	}
 
+	@RequestMapping(value = "/activateTeacher", method = RequestMethod.GET)
+	public String activateTeacher(Model model) {
+		
+		return "activateTeacher";
+	}
 	
-	
+	@RequestMapping(value = "/return", method = RequestMethod.GET)
+	public String returnLoginPage(Model model) {
+		model.addAttribute("mode", "main");
+		return "addTeacher";
+	}
 }
