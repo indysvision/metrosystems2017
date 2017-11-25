@@ -18,16 +18,15 @@ import com.metrotraining.catalogus.mail.Mail;
 
 @Controller
 public class LoginController {
-	
-	
 	@Autowired
     private EmailService emailService;
-
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login(Model model) {
 		
 		return "mainTeacher";
 	}
+	
 	
 	@RequestMapping(value = "/addTeacher", method = RequestMethod.GET)
 	public String saveUser(@RequestParam(value = "name",required = false) String name,
@@ -49,8 +48,7 @@ public class LoginController {
 	        emailModel.put("signature", "https://memorynotfound.com");
 	        mail.setModel(emailModel);
 
-	     
-			try {
+	        try {
 				emailService.sendSimpleMessage(mail);
 			} catch (MessagingException e) {
 				// TODO Auto-generated catch block
@@ -66,6 +64,5 @@ public class LoginController {
 		return "mainTeacher";
 	}
 
-	
 	
 }
