@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      
+      <title>Metro Page</title>
+   </head>
+<body>
+<div class="container">
+<table class="table" style="width: auto;" border="1">
+   <thead>
+     <tr>
+       <th class="col-md-1">Nume</th>
+       <th class="col-md-5">Imagine</th>
+       <th class="col-md-1">Categorie</th>
+       <th class="col-md-1">Descriere</th>
+       <th class="col-md-1">Email</th>
+     </tr>
+   </thead>
+   <tbody>
+   
+   <th:block th:each="user : ${users}">
+	     <tr>
+	       <td th:text="${user.name}">Nume</td>
+	        <td><img th:src="@{'data:image/png;base64,'+${imagine}}" alt="" width="300" height="300"/></td>
+	        <td th:text="${user.category}">Categorie</td>
+	        <td th:text="${user.description}">Descriere</td>
+	        <td th:text="${user.email}">Email</td>
+
+	     </tr>
+	</th:block>
+   
+   </tbody>
+ </table>
+</div>
+<div>
+ <a  th:href="@{/editare(id=(${id}), mode='edit',  originalMode = (${mode}))}" > <button type="submit" class="btn btn-default">Editare</button></a>
+</div>
+</body>
+</html>
