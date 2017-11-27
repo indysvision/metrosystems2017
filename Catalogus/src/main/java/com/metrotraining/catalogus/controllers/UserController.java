@@ -34,19 +34,12 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping( value = "/createAdminAccount", method =  RequestMethod.POST )
+	@RequestMapping( value = "/createAdminAccount", method = RequestMethod.GET )
 	public String createAdmin(   @RequestParam(value="name") String name,   
 			                     @RequestParam(value="email") String email, 
 						         @RequestParam(value="password") String password,
 						         Model model) {
-		
-		if( userRepository.existsByEmail(email)) {
-			return "main";
-		}
-		else {
-			model.addAttribute("show", 1);
-			return "login";
-		}
+		return "createAccount";
 	}
 	
 
