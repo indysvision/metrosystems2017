@@ -17,10 +17,10 @@
             
 	      <div class="row">
             <form action = "/addTeacher">
-            <p> Add teacher: </p>
+            <p> Teacher: </p>
                <div class="row">
                   <div class="col-xs-3">          
-                     <input type="text" class="form-control" id="name" placeholder="Name" name="name" required="true"/>
+                     <input th:value="${teacher.name}" type="text" class="form-control" id="name" placeholder="Name" name="name" required="true"/>
                   </div>
                </div>
                <div class="row">
@@ -28,7 +28,7 @@
                </div>
                <div class="row">
                   <div class="col-xs-3">          
-                     <input type="text" class="form-control" id="emailCreate" placeholder="E-mail a@b.c" name="emailCreate" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="true"/>
+                     <input th:value="${teacher.email}" type="text" class="form-control" id="emailCreate" placeholder="E-mail a@b.c" name="emailCreate" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="true"/>
                   </div>
                </div>
                <div class="row">
@@ -36,14 +36,16 @@
                </div>
                <div class="row">
                   <div class="col-xs-3">          
-                     <input type="text" class="form-control" id="category" placeholder="Category" name="category" required="true"/>
+                     <input th:value="${teacher.category}" type="text" class="form-control" id="category" placeholder="Category" name="category" required="true"/>
                   </div>
                </div>
                <div class="row">
                   <div class="col-xs-3">          
-                     <input type="text" class="form-control" id="description" placeholder="Description" name="description" required="true"/>
+                     <input th:value="${teacher.description}" type="text" class="form-control" id="description" placeholder="Description" name="description" required="true"/>
                   </div>
                </div>
+               
+               <input th:value = "${teacher.id}" id="teacherId" name="teacherId" type = "hidden"/>
                <div class="row">
                   <div class="col-xs-12" style="height:5px;"></div>
                </div>

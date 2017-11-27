@@ -31,9 +31,17 @@ public class LoginController {
 	private UserRepository userList;
 
 	@RequestMapping(value = "/editTeacher", method = RequestMethod.GET)
-    public String editTeacherPart(Model model) {
+    public String editTeacherPart(@RequestParam(value = "teacherId", required = false) Long id,
+    		                      Model model) {
+		if (id == null) {
         model.addAttribute("mode", "invite");
-        return "listEditTeacher";
+        
+		}
+		else {
+			model.addAttribute("mode", "invite");
+			model.addAttribute("teacher", userList.findById(id));
+		}
+		return "listEditTeacher";
     }	
 	
 	@RequestMapping(value = "/listTeacher", method = RequestMethod.GET)
@@ -58,7 +66,10 @@ public class LoginController {
 			@RequestParam(value = "emailCreate") String emailCreate,
 			@RequestParam(value = "category") String category,
 			@RequestParam(value = "description") String description,
+			@RequestParam(value = "teacherId", required = false ) Long id,
 			 Model model) {
+		 
+		    if (id == null ) {
 
 		    userList.save(new User(name, category, description, emailCreate, null, UserRole.TEACHER,
 					2017, 2017, "dummy_pasword", UserStatus.PENDING));
@@ -87,6 +98,21 @@ public class LoginController {
 		
 		
 			model.addAttribute("mode", "mailSent");
+		    }
+		    else
+		    {
+		    	User teacher = userList.findById(id);
+		    	teacher.setCategory(category);
+		    	teacher.setDescription(description);
+		    	teacher.setEmail(emailCreate);
+		    	teacher.setName(name);
+		    	userList.save(teacher);
+		    	
+		    	model.addAttribute("mode", "listTeacher");
+				model.addAttribute("teacherId", null);
+				model.addAttribute("teacherList", userList.findByType(UserRole.TEACHER));
+		    }
+		    
 		return "listEditTeacher";
 	}
 
