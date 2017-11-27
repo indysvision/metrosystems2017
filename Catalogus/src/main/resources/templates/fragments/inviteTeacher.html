@@ -17,7 +17,7 @@
             
 	      <div class="row">
             <form action = "/addTeacher">
-            <p> Adauga profesor: </p>
+            <p> Add teacher: </p>
                <div class="row">
                   <div class="col-xs-3">          
                      <input type="text" class="form-control" id="name" placeholder="Name" name="name" required="true"/>
@@ -36,7 +36,12 @@
                </div>
                <div class="row">
                   <div class="col-xs-3">          
-                     <input type="text" class="form-control" id="category" placeholder="Categorie" name="category" required="true"/>
+                     <input type="text" class="form-control" id="category" placeholder="Category" name="category" required="true"/>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-3">          
+                     <input type="text" class="form-control" id="description" placeholder="Description" name="description" required="true"/>
                   </div>
                </div>
                <div class="row">
@@ -45,7 +50,7 @@
 
                <div class="row">
                   <div class="col-xs-3">
-                     <input type="submit" class="btn btn-info" id="createBtn" value="Trimite"/>
+                     <input type="submit" class="btn btn-info" id="createBtn" value="Send"/>
                   </div>
                 
                </div>
@@ -58,12 +63,12 @@
 <div th:fragment="inviteTeacherSent">
 <div class="container">
 	
-         <form action="/return">
+         <form action="/listTeacher">
             <div class="row">
                <div class="col-xs-12" style="height:50px;"></div>
             </div>
             <div class="row">
-               <p >Inivtatie transmisa!</p>
+               <p >Invitatation sent!</p>
             </div>
             <div class="row">
                <div class="col-sm-6">

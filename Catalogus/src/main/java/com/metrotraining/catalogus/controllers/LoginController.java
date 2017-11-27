@@ -18,6 +18,7 @@ import com.metrotraining.catalogus.persistence.UserRepository;
 import com.metrotraining.catalogus.pojos.Mail;
 import com.metrotraining.catalogus.pojos.User;
 import com.metrotraining.catalogus.pojos.UserRole;
+import com.metrotraining.catalogus.pojos.UserStatus;
 
 @Controller
 public class LoginController {
@@ -29,28 +30,19 @@ public class LoginController {
 	@Autowired
 	private UserRepository userList;
 
-	/*@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String login(Model model) {
-		model.addAttribute("mode", "main");
-		return "addTeacher";
-	}*/
-	
 	@RequestMapping(value = "/editTeacher", method = RequestMethod.GET)
-	public String editTeacherPart(Model model) {
-		model.addAttribute("mode", "main");
-		return "addTeacher";
-	}
+    public String editTeacherPart(Model model) {
+        model.addAttribute("mode", "invite");
+        return "listEditTeacher";
+    }	
 	
 	@RequestMapping(value = "/listTeacher", method = RequestMethod.GET)
 	public String listTeacher(@RequestParam(value = "teacherId", required = false) Long id,
 			                  Model model) {
 		if (id != null) 
 		{
-			//User deleteTeacher = userList.findById(id);
-			userList.delete(id);	
 			
-
-			//userList.save(arg0)
+			userList.delete(id);
 		}
 		
 		model.addAttribute("mode", "listTeacher");
@@ -60,19 +52,16 @@ public class LoginController {
 		return "listEditTeacher";
 	}
 	
-	@RequestMapping(value = "/deleteTeacher", method = RequestMethod.GET)
-	public String deleteTeacher(@RequestParam(value = "teacherId") long id,
-			                    Model model) {		
-		return "listEditTeacher";
-	}
-	
+		
 	@RequestMapping(value = "/addTeacher", method = RequestMethod.GET)
 	public String saveUser(@RequestParam(value = "name") String name,
 			@RequestParam(value = "emailCreate") String emailCreate,
 			@RequestParam(value = "category") String category,
+			@RequestParam(value = "description") String description,
 			 Model model) {
 
-		
+		    userList.save(new User(name, category, description, emailCreate, null, UserRole.TEACHER,
+					2017, 2017, "dummy_pasword", UserStatus.PENDING));
 
 	        Mail mail = new Mail();
 	        mail.setFrom("no-reply@memorynotfound.com");
@@ -98,7 +87,7 @@ public class LoginController {
 		
 		
 			model.addAttribute("mode", "mailSent");
-		return "addTeacher";
+		return "listEditTeacher";
 	}
 
 	@RequestMapping(value = "/activateTeacher", method = RequestMethod.GET)
@@ -107,9 +96,5 @@ public class LoginController {
 		return "activateTeacher";
 	}
 	
-	@RequestMapping(value = "/return", method = RequestMethod.GET)
-	public String returnLoginPage(Model model) {
-		model.addAttribute("mode", "main");
-		return "addTeacher";
-	}
+	
 }

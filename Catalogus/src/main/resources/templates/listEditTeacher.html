@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 <title>Teachers list</title>
-	<div th:replace="fragments/header :: header-css"/> 
+<div th:replace="fragments/header :: header-css" />
 </head>
 <body>
-	
-<div th:replace="fragments/header :: header"/> 
 
-<div th:switch= "${mode}">
-	<p th:case="'home'" >
-	<div th:replace="fragments/home :: home"/> 
-	</p>
-	<p th:case="'listTeacher'" >
-	<div th:replace="fragments/TeachersList :: list"/> 
-	</p>
-	
-</div>
+	<div th:replace="fragments/header :: header" />
 
-<div th:replace="fragments/footer :: footer"/> 
-   
+	<div th:switch="${mode}">
+		<p th:case="'home'">
+		<div th:replace="fragments/home :: home" />
+		</p>
+		<p th:case="'listTeacher'">
+		<div th:replace="fragments/TeachersList :: list" />
+		</p>
+		<div th:switch="${mode}">
+			<p th:case="'invite'">
+			<div th:replace="fragments/inviteTeacher :: inviteTeacher" />
+			</p>
+			<p th:case="'mailSent'">
+			<div th:replace="fragments/inviteTeacher :: inviteTeacherSent" />
+			</p>
+		</div>
+
+	</div>
+
+	<div th:replace="fragments/footer :: footer" />
+
 </body>
 </html>
