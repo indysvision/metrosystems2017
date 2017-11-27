@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.metrotraining.catalogus.services.EmailService;
+import com.metrotraining.catalogus.persistence.UserRepository;
 import com.metrotraining.catalogus.pojos.Mail;
+import com.metrotraining.catalogus.pojos.User;
+import com.metrotraining.catalogus.pojos.UserRole;
 
 @Controller
 public class LoginController {
@@ -22,6 +25,9 @@ public class LoginController {
 	
 	@Autowired
     private EmailService emailService;
+	
+	@Autowired
+	private UserRepository userList;
 
 	/*@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login(Model model) {
@@ -36,8 +42,27 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/listTeacher", method = RequestMethod.GET)
-	public String listTeacher(Model model) {
+	public String listTeacher(@RequestParam(value = "teacherId", required = false) Long id,
+			                  Model model) {
+		if (id != null) 
+		{
+			//User deleteTeacher = userList.findById(id);
+			userList.delete(id);	
+			
+
+			//userList.save(arg0)
+		}
+		
 		model.addAttribute("mode", "listTeacher");
+		model.addAttribute("teacherId", null);
+		model.addAttribute("teacherList", userList.findByType(UserRole.TEACHER));
+		
+		return "listEditTeacher";
+	}
+	
+	@RequestMapping(value = "/deleteTeacher", method = RequestMethod.GET)
+	public String deleteTeacher(@RequestParam(value = "teacherId") long id,
+			                    Model model) {		
 		return "listEditTeacher";
 	}
 	

@@ -11,6 +11,7 @@
 <table class="table" style="width: auto;">
    <thead>
      <tr>
+       <th class="col-md-1">No</th>
        <th class="col-md-1">Name</th>
        <th class="col-md-1">E-mail</th>
        <th class="col-md-1">Category</th>
@@ -19,12 +20,15 @@
    </thead>
    <tbody>
    
-   <th:block th:each="element : ${listaElemente}">
+   <th:block th:each="element : ${teacherList}">
 	     <tr>
 	       <td th:text="${#ids.seq('')} "></td>
-	       <td th:text="${element.element}">Text</td>
+	       <td th:text="${element.name}"></td>
+	       <td th:text="${element.email}"></td>
+	       <td th:text="${element.category}"></td>
+	       <td th:text="${element.lastLogin}"></td>
 	        <td> <a  th:href="@{/teacherPart(Email=(${email}), mode='editTeacherPart', teacherId=(${element.id}), originalMode = (${mode}))}" > <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button></a></td>
-	        <td><a  th:href="@{/teacherPart(Email=(${email}), mode='deleteTeacherPart', teacherId=(${element.id}), originalMode = (${mode}))}" ><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></a></td>
+	        <td><a  th:href="@{/listTeacher( teacherId=(${element.id}))}" ><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></a></td>
 	     </tr>
 	</th:block>
    
