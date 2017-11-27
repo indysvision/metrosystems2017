@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Teachers List</title>
+</head>
+<body>
+<div th:fragment="list">
+ <div class="conta
+ iner">
+<table class="table" style="width: auto;">
+   <thead>
+     <tr>
+       <th class="col-md-1">No</th>
+       <th class="col-md-1">Name</th>
+       <th class="col-md-1">E-mail</th>
+       <th class="col-md-1">Category</th>       
+       <th class="col-md-1">Status</th>
+       <th class="col-md-1">Last login</th>
+     </tr>
+   </thead>
+   <tbody>
+   
+   <th:block th:each="element : ${teacherList}">
+	     <tr>
+	       <td th:text="${#ids.seq('')} "></td>
+	       <td th:text="${element.name}"></td>
+	       <td th:text="${element.email}"></td>
+	       <td th:text="${element.category}"></td>
+	       <td th:text="${element.status}"></td>
+	       <td th:text="${element.lastLogin}"></td>
+	        <td> <a  th:href="@{/editTeacher( teacherId=(${element.id}))}" > <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button></a></td>
+	        <td><a  th:href="@{/listTeacher( teacherId=(${element.id}))}" ><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></a></td>
+	     </tr>
+	</th:block>
+   
+   </tbody>
+ </table>
+</div>
+ <a  th:href="@{/editTeacher}" > <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button></a>
+</div>
+</body>
+</html>

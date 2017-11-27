@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Invite Teacher</title>
+</head>
+<body>
+
+<div th:fragment="inviteTeacher">
+ <div class="container">
+ <div class="row">
+               <div class="col-xs-12" style="height:50px;"></div>
+            </div>
+            <div class="row">
+               <div class="col-xs-12" style="height:50px;"></div>
+            </div>
+            
+	      <div class="row">
+            <form action = "/addTeacher">
+            <p> Teacher: </p>
+               <div class="row">
+                  <div class="col-xs-3">          
+                     <input th:value="${teacher.name}" type="text" class="form-control" id="name" placeholder="Name" name="name" required="true"/>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-12" style="height:5px;"></div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-3">          
+                     <input th:value="${teacher.email}" type="text" class="form-control" id="emailCreate" placeholder="E-mail a@b.c" name="emailCreate" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="true"/>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-12" style="height:5px;"></div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-3">          
+                     <input th:value="${teacher.category}" type="text" class="form-control" id="category" placeholder="Category" name="category" required="true"/>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-3">          
+                     <input th:value="${teacher.description}" type="text" class="form-control" id="description" placeholder="Description" name="description" required="true"/>
+                  </div>
+               </div>
+               
+               <input th:value = "${teacher.id}" id="teacherId" name="teacherId" type = "hidden"/>
+               <div class="row">
+                  <div class="col-xs-12" style="height:5px;"></div>
+               </div>
+
+               <div class="row">
+                  <div class="col-xs-3">
+                     <input type="submit" class="btn btn-info" id="createBtn" value="Send"/>
+                  </div>
+                
+               </div>
+            </form>
+         </div>
+
+</div>
+</div>
+
+<div th:fragment="inviteTeacherSent">
+<div class="container">
+	
+         <form action="/listTeacher">
+            <div class="row">
+               <div class="col-xs-12" style="height:50px;"></div>
+            </div>
+            <div class="row">
+               <p >Invitatation sent!</p>
+            </div>
+            <div class="row">
+               <div class="col-sm-6">
+                  <input type="submit" class="btn btn-info" id="returnBtn" value="Return"/>
+               </div>
+            </div>
+         </form>
+      </div>
+</div>
+
+
+
+</body>
+</html>
