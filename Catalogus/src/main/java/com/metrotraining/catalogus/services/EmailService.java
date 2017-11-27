@@ -1,4 +1,4 @@
-package com.metrotraining.catalogus.mail;
+package com.metrotraining.catalogus.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

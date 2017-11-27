@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.metrotraining.catalogus.mail.EmailService;
+import com.metrotraining.catalogus.services.EmailService;
 import com.metrotraining.catalogus.pojos.Mail;
 
 @Controller
