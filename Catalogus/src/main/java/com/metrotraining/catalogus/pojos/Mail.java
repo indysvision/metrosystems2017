@@ -1,4 +1,4 @@
-package com.metrotraining.catalogus.mail;
+package com.metrotraining.catalogus.pojos;
 import java.util.List;
 import java.util.Map;
 

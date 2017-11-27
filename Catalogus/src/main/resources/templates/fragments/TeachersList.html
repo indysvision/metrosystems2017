@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Teachers List</title>
+</head>
+<body>
+<div th:fragment="list">
+ <div class="conta
+ iner">
+<table class="table" style="width: auto;">
+   <thead>
+     <tr>
+       <th class="col-md-1">Name</th>
+       <th class="col-md-1">E-mail</th>
+       <th class="col-md-1">Category</th>
+       <th class="col-md-1">Last login</th>
+     </tr>
+   </thead>
+   <tbody>
+   
+   <th:block th:each="element : ${listaElemente}">
+	     <tr>
+	       <td th:text="${#ids.seq('')} "></td>
+	       <td th:text="${element.element}">Text</td>
+	        <td> <a  th:href="@{/teacherPart(Email=(${email}), mode='editTeacherPart', teacherId=(${element.id}), originalMode = (${mode}))}" > <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button></a></td>
+	        <td><a  th:href="@{/teacherPart(Email=(${email}), mode='deleteTeacherPart', teacherId=(${element.id}), originalMode = (${mode}))}" ><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></a></td>
+	     </tr>
+	</th:block>
+   
+   </tbody>
+ </table>
+</div>
+ <a  th:href="@{/editTeacher}" > <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button></a>
+</div>
+</body>
+</html>

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.metrotraining.catalogus.mail.EmailService;
-import com.metrotraining.catalogus.mail.Mail;
+import com.metrotraining.catalogus.pojos.Mail;
 
 @Controller
 public class LoginController {
@@ -23,10 +23,22 @@ public class LoginController {
 	@Autowired
     private EmailService emailService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login(Model model) {
 		model.addAttribute("mode", "main");
 		return "addTeacher";
+	}*/
+	
+	@RequestMapping(value = "/editTeacher", method = RequestMethod.GET)
+	public String editTeacherPart(Model model) {
+		model.addAttribute("mode", "main");
+		return "addTeacher";
+	}
+	
+	@RequestMapping(value = "/listTeacher", method = RequestMethod.GET)
+	public String listTeacher(Model model) {
+		model.addAttribute("mode", "listTeacher");
+		return "listEditTeacher";
 	}
 	
 	@RequestMapping(value = "/addTeacher", method = RequestMethod.GET)
