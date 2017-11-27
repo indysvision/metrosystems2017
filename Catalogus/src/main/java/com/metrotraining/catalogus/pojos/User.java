@@ -1,5 +1,6 @@
 package com.metrotraining.catalogus.pojos;
 
+<<<<<<< HEAD
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -7,14 +8,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Calendar;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+
+import com.metrotraining.catalogus.pojos.UserRole;
+import com.metrotraining.catalogus.pojos.UserStatus;
 
 @Entity
 @Table
 public class User {
-	private String name;
+    @Id
+    @GeneratedValue
+    @Column(name="USER_ID")
+	private long id;
+    
+    @Column(name="USER_NAME", nullable=false)
+    private String name;
+    
 	private String category;
 	private String description;
 	private String email;
+	
+    @Lob
+	@Column(name="PHOTO", nullable=false, columnDefinition="mediumblob")
+	private byte[] photo;
 	private String photoUrl;
 	
 	@Enumerated(EnumType.STRING)

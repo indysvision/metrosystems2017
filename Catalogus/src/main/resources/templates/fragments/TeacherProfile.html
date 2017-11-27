@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ 
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
+<meta charset="ISO-8859-1"/>
+<title>Hello, Teacher(should taken as parameter)</title>
+</head>
+<body>
+<div th:fragment="table">
+ <div class="conta
+ iner">
+<table class="table" style="width: auto;">
+   <thead>
+     <tr>
+       <th class="col-md-1">ID</th>
+       <th class="col-md-1">userName</th>
+       <th class="col-md-5">note</th>
+       <th class="col-md-1">createdDate</th>
+     </tr>
+   </thead>
+   <tbody>
+   		<th:block th:each="element : ${notes}">
+	     <tr>
+	       <td th:text="${#ids.seq('')} "></td>
+	       <td th:text="${element.userName}"></td>
+	       <td th:text="${element.note}"></td>
+	       <td th:text="${element.createdDate}"></td>
+	     </tr>
+		</th:block>   
+   </tbody>
+ </table>	
+  <a th:href="@{/}" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-circle-arrow-left"></span> Go Back
+        </a>
+</div>
+</div>
+</body>
+</html>

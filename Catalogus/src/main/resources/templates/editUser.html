@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Insert title here</title>
+</head>
+<body>
+<form action = "/editare">
+  <div class="form-group">
+   <input th:value = "${editUser.id}" id="id" name="id" type = "hidden"/>
+   <input th:value = "${mode}" id="mode" name="mode" type = "hidden"/>
+   <input th:value = "${originalMode}" id="originalMode" name="originalMode" type = "hidden"/>
+      <label class="control-label col-sm-2"> Name</label>
+      <div class="col-sm-10">          
+        <input type="text" id="newName" name="newName" th:value = "${editUser.name}"/>
+      </div>
+      <label class="control-label col-sm-2"> Category</label>
+      <div class="col-sm-10">          
+        <input type="text" id="newCat" name="newCat" th:value = "${editUser.category}"/>
+      </div>
+     <label class="control-label col-sm-2"> Description</label>
+      <div class="col-sm-10">          
+        <input type="text" id="newDesc" name="newDesc" th:value = "${editUser.description}"/>
+      </div>
+      <label class="control-label col-sm-2"> Email</label>
+      <div class="col-sm-10">          
+        <input type="text" id="newEmail" name="newEmail" th:value = "${editUser.email}"/>
+      </div>
+      <label class="control-label col-sm-2"> Photo</label>
+      <div class="col-sm-10">
+		<input id="upload" type="file"/>
+		<a href="" id="upload_link" onclick="myFunction()">Upload your photo</a>
+		<script>
+		function myFunction() {
+		    var x = document.getElementById("upload").value;
+		    document.getElementById("newPhotoUrl").value = x;
+		}
+		</script>
+		<div class="col-sm-10">
+	        <input type="text" id="newPhotoUrl" name="newPhotoUrl"/>
+	    </div>
+      </div>
+      <div class="col-sm-offset-2 col-sm-10">
+		<button type="submit" class="btn btn-default">SAVE</button>
+      </div>
+    </div>
+</form>
+
+<div>
+ <a  th:href="@{/return(id=(${id}), mode='exit')}" > <button type="submit" class="btn btn-default">Return</button></a>
+</div>
+</body>
+</html>
