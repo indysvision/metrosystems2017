@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1"/>
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1"/>
+	<title>Insert title here</title>
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+	
+<form role="form" data-toggle="validator">
+  <div class="form-group col-md-2">
+    <label for="adminName">Name</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+    <small id="nameHelp" class="form-text text-muted"></small>
+  </div>
+  <div class="form-group col-md-2">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted"></small>
+  </div>
+  <div class="form-group">
+        <label for="inputPassword" class="control-label">Password</label>
+        <div class="form-group col-sm-6">
+          <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+          <span class="help-block">Minimum of 6 characters</span>
+  </div>
+  <div class="form-group col-sm-6">
+          <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+          <div class="help-block with-errors"></div>
+        </div>
+        </div>
+  </div>
+  
 
-<form>
-  Name:<br>   <input type="text" name="Name"/> <br>
-  Email:<br>  <input type="email" name="lastname"/> <br>
-  Password:<br> <input type="password" name="password"/> <br>
-                <input type="submit" id="createButton" value="CREATE"/>
+  
+  <div class="form-group col-md-2">
+	 <button type="submit" class="btn btn-primary">Create admin account</button>
+   </div>
 </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+
 
 </body>
 </html>

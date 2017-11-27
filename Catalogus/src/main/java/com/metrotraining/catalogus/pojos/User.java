@@ -1,6 +1,8 @@
 package com.metrotraining.catalogus.pojos;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,10 +16,15 @@ public class User {
 	private String description;
 	private String email;
 	private String photoUrl;
+	
+	@Enumerated(EnumType.STRING)
 	private UserRole type;
+	
 	private long birthday;
 	private long lastLogin;
 	private String password;
+	
+	@Enumerated(EnumType.STRING)
 	private UserStatus status;
 	
 	@Id
