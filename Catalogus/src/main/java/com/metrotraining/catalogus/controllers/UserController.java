@@ -33,9 +33,9 @@ public class UserController {
 	public String main(   @RequestParam(value="email") String email, 
 						  @RequestParam(value="password") String password,
 						  Model model) {
-		
+		System.out.println("suntem in main " + userRepository.existsByEmail(email));
 		if( userRepository.existsByEmail(email)) {
-			return "main";
+			return "editUser";
 		}
 		else {
 			model.addAttribute("show", 1);
@@ -43,21 +43,24 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping( value = "/createAdminAccount", method = RequestMethod.POST )
-	public String createAdminAccount(Model model,
-			@RequestParam(value="name") String name,   
-			@RequestParam(value="email") String email, 
-			@RequestParam(value="password") String password) {
-		System.out.println("test");
-		model.addAttribute("user", new User(name,email,password,UserRole.ADMIN));
-		//model.addAttribute("userType", new ArrayList<UserRole>(Arrays.asList(UserRole.values())) );
+	@RequestMapping( value = "/createAdminAccount", method = RequestMethod.GET )
+	public String createAdminAccount() {
 		return "createAccount";
 	}
 	
-	@RequestMapping( value = "/createAdminAccount/saved", method = RequestMethod.POST )
-	public String createAdminAccountSave(User user) {
-		User savedUser = userService.saveAdmin(user);
-		return "login" + savedUser.getId(); // "mainScreen"
+	@RequestMapping( value = "/createAdminAccount", method = RequestMethod.POST )
+	public String createAdminAccountSave(Model model,
+			@RequestParam(value="name") String name,   
+			@RequestParam(value="email") String email, 
+			@RequestParam(value="password") String password) {
+//		User savedUser = userService.saveAdmin(user);
+		System.out.println(name +" " + email + " " + password);
+		User userToSave = new User(name,email,password,UserRole.ADMIN);
+		model.addAttribute("user", userToSave);
+		userService.save(userToSave);
+		//model.addAttribute("userType", new ArrayList<UserRole>(Arrays.asList(UserRole.values())) );
+
+		return "listEditTeacher"; // "mainScreen"
 		
 	}
 	

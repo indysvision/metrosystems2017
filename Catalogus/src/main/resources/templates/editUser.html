@@ -7,7 +7,7 @@
 <body>
 <form action = "/editare">
   <div class="form-group">
-   <input th:value = "${editUser.id}" id="id" name="id" type = "hidden"/>
+ <!--   <input th:value = "${editUser.id}" id="id" name="id" type = "hidden"/> -->
    <input th:value = "${mode}" id="mode" name="mode" type = "hidden"/>
    <input th:value = "${originalMode}" id="originalMode" name="originalMode" type = "hidden"/>
       <label class="control-label col-sm-2"> Name</label>
@@ -29,7 +29,7 @@
       <label class="control-label col-sm-2"> Photo</label>
       <div class="col-sm-10">
 		<input id="upload" type="file"/>
-		<a href="" id="upload_link" onclick="myFunction()">Upload your photo</a>
+		<a href="" id="upload_link" formaction="/updateUser" onclick="myFunction()">Upload your photo</a>
 		<script>
 		function myFunction() {
 		    var x = document.getElementById("upload").value;
