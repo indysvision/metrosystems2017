@@ -1,6 +1,6 @@
 package com.metrotraining.catalogus.pojos;
 
-<<<<<<< HEAD
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -8,13 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Calendar;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.Table;
 
 import com.metrotraining.catalogus.pojos.UserRole;
 import com.metrotraining.catalogus.pojos.UserStatus;
@@ -22,52 +18,70 @@ import com.metrotraining.catalogus.pojos.UserStatus;
 @Entity
 @Table
 public class User {
-    @Id
-    @GeneratedValue
-    @Column(name="USER_ID")
-	private long id;
-    
-    @Column(name="USER_NAME", nullable=false)
-    private String name;
-    
-	private String category;
-	private String description;
-	private String email;
-	
-    @Lob
-	@Column(name="PHOTO", nullable=false, columnDefinition="mediumblob")
-	private byte[] photo;
-	private String photoUrl;
-	
-	@Enumerated(EnumType.STRING)
-	private UserRole type;
-	
-	private long birthday;
-	private long lastLogin;
-	private String password;
-	
-	@Enumerated(EnumType.STRING)
-	private UserStatus status;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+    
+    @Column(nullable=false)
+    private String name;
+    
+    @Column( nullable=false )
+	private String category;
+	private String description;
 	
+	@Column( unique=true, nullable=false ) 
+	private String email;
+	
+    @Lob
+	@Column( name="PHOTO", columnDefinition="mediumblob") //  nullable=false,
+	private byte[] photo;
+	private String photoUrl;
+	
+	@Column( nullable=false )
+	private long birthday;
+	private long lastLogin;
+	
+	@Column( nullable=false )
+	private String password;
+	
+	@Enumerated(EnumType.STRING)
+	@Column( nullable=false )
+	private UserRole type;
+	
+	@Column( nullable=false )
+	@Enumerated(EnumType.STRING)
+	private UserStatus status;
 	
 	public User() {}
 	
-	public User(String name, String category, String description, String email, String photoUrl, UserRole type,
+	public User(String name, String category, String description, String email,byte[] photo, String photoUrl, UserRole type,
 			long birthday, long lastLogin, String password, UserStatus status) {
 		this.name = name;
 		this.category = category;
 		this.description = description;
 		this.email = email;
+		this.photo = new byte[10];
 		this.photoUrl = photoUrl;
 		this.type = type;
 		this.birthday = birthday;
 		this.lastLogin = lastLogin;
 		this.password = password;
 		this.status = status;
+	}
+	
+	public User(String name, String email, String password) { 
+		this.name = name;
+		this.category = "";
+		this.description = "admin description";
+		this.email = email;
+		this.photo=new byte[10];
+		this.photoUrl = "...";
+		this.type = UserRole.ADMIN;
+		this.birthday = 555;
+		this.lastLogin = 1999;
+		this.password = password;
+		this.status = UserStatus.ACTIVE;
 	}
 	
 	public String getName() {
@@ -144,5 +158,13 @@ public class User {
 		return "User [name=" + name + ", category=" + category + ", description=" + description + ", email=" + email
 				+ ", photoUrl=" + photoUrl + ", type=" + type + ", birthday=" + birthday + ", lastLogin=" + lastLogin
 				+ ", password=" + password + ", status=" + status + ", id=" + id + "]";
+	}
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
 	}
 }

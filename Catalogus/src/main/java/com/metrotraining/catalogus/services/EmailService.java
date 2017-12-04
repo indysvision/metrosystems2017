@@ -2,19 +2,18 @@ package com.metrotraining.catalogus.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Service;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 
-import com.metrotraining.catalogus.pojos.Mail;
+import com.metrotraining.catalogus.pojos.Email;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 @Service
 public class EmailService {
@@ -26,7 +25,7 @@ public class EmailService {
     private SpringTemplateEngine templateEngine;
 
 
-    public void sendSimpleMessage(Mail mail) throws MessagingException, IOException {
+    public void sendSimpleMessage(Email email) throws MessagingException, IOException {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message,
                 MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
@@ -35,13 +34,13 @@ public class EmailService {
       //  helper.addAttachment("logo.png", new ClassPathResource("logo_metro.gif"));
 
         Context context = new Context();
-        context.setVariables(mail.getModel());
+        context.setVariables(email.getModel());
         String html = templateEngine.process("email-template", context);
 
-        helper.setTo(mail.getTo());
+        helper.setTo(email.getTo());
         helper.setText(html, true);
-        helper.setSubject(mail.getSubject());
-        helper.setFrom(mail.getFrom());
+        helper.setSubject(email.getSubject());
+        helper.setFrom(email.getFrom());
 
         emailSender.send(message);
     }

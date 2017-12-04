@@ -1,4 +1,4 @@
-package com.metrotraining.catalogus;
+package com.metrotraining.catalogus.controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,8 +14,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.metrotraining.catalogus.pojos.User;
 import com.metrotraining.catalogus.pojos.UserRole;
-import com.metrotraining.catalogus.UserService;
 import com.metrotraining.catalogus.pojos.UserStatus;
+import com.metrotraining.catalogus.services.UserService;
 
 @Controller
 public class MainController {
@@ -39,7 +39,7 @@ public class MainController {
 		model.addAttribute("mode", mode);
 		
 		if (mode.equals("add")) {
-			String defaultSource = "C:\\Users\\Ionelia\\eclipse-workspace\\ProjCatalog\\cat.jpg";
+			String defaultSource = ".\\images\\cat.jpg";
 		       File file = new File(defaultSource);
 		        byte[] bFile = new byte[(int) file.length()];
 		 
@@ -51,8 +51,7 @@ public class MainController {
 		            e.printStackTrace();
 		        }
 		 
-		        User user = new User("cat1", "", "", "", bFile, defaultSource, UserRole.ADMIN,
-		    			"parola", UserStatus.ACTIVE);
+		        User user = new User("name","cat1", "desc", "a@b.c",bFile, "", UserRole.ADMIN, 19860515,20170505,"parola", UserStatus.ACTIVE);
 		 
 		        userService.save(user);
 

@@ -1,10 +1,10 @@
-package com.metrotraining.catalogus;
+package com.metrotraining.catalogus.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.metrotraining.catalogus.persistence.UserRepository;
 import com.metrotraining.catalogus.pojos.User;
-import com.metrotraining.catalogus.UserRepository;
 
 @Service
 @Transactional
@@ -17,6 +17,10 @@ public class UserService {
 
 	public void save(User part) {
 		userRepo.save(part);
+	}
+	
+	public User saveAdmin(User user) {
+		return userRepo.save(user);
 	}
 	
 	public void deleteUserPart(long id) {

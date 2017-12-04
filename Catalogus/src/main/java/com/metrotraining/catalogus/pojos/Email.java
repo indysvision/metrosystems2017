@@ -2,7 +2,7 @@ package com.metrotraining.catalogus.pojos;
 import java.util.List;
 import java.util.Map;
 
-public class Mail {
+public class Email {
 
     private String from;
     private String to;
@@ -10,7 +10,7 @@ public class Mail {
     private List<Object> attachments;
     private Map<String, Object> model;
 
-    public Mail() {
+    public Email() {
 
     }
 

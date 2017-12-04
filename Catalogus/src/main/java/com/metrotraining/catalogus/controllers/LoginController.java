@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.metrotraining.catalogus.services.EmailService;
 import com.metrotraining.catalogus.persistence.UserRepository;
-import com.metrotraining.catalogus.pojos.Mail;
+import com.metrotraining.catalogus.pojos.Email;
 import com.metrotraining.catalogus.pojos.User;
 import com.metrotraining.catalogus.pojos.UserRole;
 import com.metrotraining.catalogus.pojos.UserStatus;
@@ -71,22 +71,22 @@ public class LoginController {
 		 
 		    if (id == null ) {
 
-		    userList.save(new User(name, category, description, emailCreate, null, UserRole.TEACHER,
+		    userList.save(new User(name, category, description, emailCreate,null ,null, UserRole.TEACHER,
 					2017, 2017, "dummy_pasword", UserStatus.PENDING));
 
-	        Mail mail = new Mail();
-	        mail.setFrom("no-reply@memorynotfound.com");
-	        mail.setTo(emailCreate);
-	        mail.setSubject("You are invited to join class");
+	        Email email = new Email();
+	        email.setFrom("no-reply@memorynotfound.com");
+	        email.setTo(emailCreate);
+	        email.setSubject("You are invited to join class");
 
 	        Map emailModel = new HashMap();
 	        emailModel.put("connect_string", "http://localhost:8090/activateTeacher");
 	        emailModel.put("name", name);
-	        mail.setModel(emailModel);
+	        email.setModel(emailModel);
 
 	     
 			try {
-				emailService.sendSimpleMessage(mail);
+				emailService.sendSimpleMessage(email);
 			} catch (MessagingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
