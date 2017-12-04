@@ -26,7 +26,6 @@ public class User {
     @Column(nullable=false)
     private String name;
     
-    @Column( nullable=false )
 	private String category;
 	private String description;
 	
@@ -34,11 +33,10 @@ public class User {
 	private String email;
 	
     @Lob
-	@Column( name="PHOTO", columnDefinition="mediumblob") //  nullable=false,
+	@Column( name="PHOTO", columnDefinition="mediumblob")
 	private byte[] photo;
 	private String photoUrl;
 	
-	@Column( nullable=false )
 	private long birthday;
 	private long lastLogin;
 	
@@ -49,7 +47,6 @@ public class User {
 	@Column( nullable=false )
 	private UserRole type;
 	
-	@Column( nullable=false )
 	@Enumerated(EnumType.STRING)
 	private UserStatus status;
 	
@@ -61,7 +58,7 @@ public class User {
 		this.category = category;
 		this.description = description;
 		this.email = email;
-		this.photo = new byte[10];
+		this.photo = photo;
 		this.photoUrl = photoUrl;
 		this.type = type;
 		this.birthday = birthday;
@@ -69,21 +66,15 @@ public class User {
 		this.password = password;
 		this.status = status;
 	}
+
 	
-	public User(String name, String email, String password) { 
+	public User(String name, String email, String password, UserRole type) {
 		this.name = name;
-		this.category = "";
-		this.description = "admin description";
 		this.email = email;
-		this.photo=new byte[10];
-		this.photoUrl = "...";
-		this.type = UserRole.ADMIN;
-		this.birthday = 555;
-		this.lastLogin = 1999;
 		this.password = password;
-		this.status = UserStatus.ACTIVE;
+		this.type = type;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -155,6 +146,12 @@ public class User {
 
 	@Override
 	public String toString() {
+//		TestA a = new TestA()
+//				.add(23)
+//				.buy(36)
+//				.name("cucu")
+//				.cancel(false);
+		
 		return "User [name=" + name + ", category=" + category + ", description=" + description + ", email=" + email
 				+ ", photoUrl=" + photoUrl + ", type=" + type + ", birthday=" + birthday + ", lastLogin=" + lastLogin
 				+ ", password=" + password + ", status=" + status + ", id=" + id + "]";
@@ -167,4 +164,6 @@ public class User {
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
+	
+	
 }

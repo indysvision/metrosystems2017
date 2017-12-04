@@ -72,7 +72,8 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/editare", method = RequestMethod.GET)
-	public String editUser(@RequestParam (value="id") long id, @RequestParam (value="mode") String mode,
+	public String editUser(@RequestParam (value="id") long id, 
+			 @RequestParam (value="mode") String mode,
 			 @RequestParam (value="originalMode") String originalMode,
 			 @RequestParam (value="newName", required=false) String newName,
 			 @RequestParam (value="newCat", required=false) String newCat,

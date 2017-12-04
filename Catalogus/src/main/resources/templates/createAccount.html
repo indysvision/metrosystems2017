@@ -7,7 +7,7 @@
 </head>
 <body>
 	
-<form th:object="${user}" th:action="@{/createAdminAccount/saved}" method="post" role="form" data-toggle="validator">
+<form th:object="${user}" th:action="@{/createAdminAccount}" method="post" role="form" data-toggle="validator">
   <input type="hidden" th:field="*{id}" />
   <div class="form-group col-md-2">
     <label for="exampleInputName">Name</label>

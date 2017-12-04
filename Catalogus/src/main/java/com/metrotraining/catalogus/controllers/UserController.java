@@ -43,9 +43,13 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping( value = "/createAdminAccount", method = RequestMethod.GET )
-	public String createAdminAccount(Model model) {
-		model.addAttribute("user", new User());
+	@RequestMapping( value = "/createAdminAccount", method = RequestMethod.POST )
+	public String createAdminAccount(Model model,
+			@RequestParam(value="name") String name,   
+			@RequestParam(value="email") String email, 
+			@RequestParam(value="password") String password) {
+		System.out.println("test");
+		model.addAttribute("user", new User(name,email,password,UserRole.ADMIN));
 		//model.addAttribute("userType", new ArrayList<UserRole>(Arrays.asList(UserRole.values())) );
 		return "createAccount";
 	}

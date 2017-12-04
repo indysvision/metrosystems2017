@@ -21,106 +21,85 @@ import com.metrotraining.catalogus.pojos.UserRole;
 import com.metrotraining.catalogus.pojos.UserStatus;
 
 @Controller
-public class LoginController {
-	
-	
+public class TeacherController {
+
 	@Autowired
-    private EmailService emailService;
-	
+	private EmailService emailService;
+
 	@Autowired
 	private UserRepository userList;
 
 	@RequestMapping(value = "/editTeacher", method = RequestMethod.GET)
-    public String editTeacherPart(@RequestParam(value = "teacherId", required = false) Long id,
-    		                      Model model) {
-		if (id == null) {
-        model.addAttribute("mode", "invite");
-        
-		}
-		else {
-			model.addAttribute("mode", "invite");
+	public String editTeacherPart(@RequestParam(value = "teacherId", required = false) Long id, Model model) {
+		model.addAttribute("mode", "invite");
+		if (id != null) {
 			model.addAttribute("teacher", userList.findById(id));
 		}
 		return "listEditTeacher";
-    }	
-	
+	}
+
 	@RequestMapping(value = "/listTeacher", method = RequestMethod.GET)
-	public String listTeacher(@RequestParam(value = "teacherId", required = false) Long id,
-			                  Model model) {
-		if (id != null) 
-		{
-			
+	public String listTeacher(@RequestParam(value = "teacherId", required = false) Long id, Model model) {
+		if (id != null) {
 			userList.delete(id);
 		}
-		
 		model.addAttribute("mode", "listTeacher");
 		model.addAttribute("teacherId", null);
 		model.addAttribute("teacherList", userList.findByType(UserRole.TEACHER));
-		
 		return "listEditTeacher";
 	}
-	
-		
+
 	@RequestMapping(value = "/addTeacher", method = RequestMethod.GET)
 	public String saveUser(@RequestParam(value = "name") String name,
-			@RequestParam(value = "emailCreate") String emailCreate,
+			@RequestParam(value = "emailCreate") String emailCreate, 
 			@RequestParam(value = "category") String category,
 			@RequestParam(value = "description") String description,
-			@RequestParam(value = "teacherId", required = false ) Long id,
-			 Model model) {
-		 
-		    if (id == null ) {
+			@RequestParam(value = "teacherId", required = false) Long id, Model model) {
 
-		    userList.save(new User(name, category, description, emailCreate,null ,null, UserRole.TEACHER,
-					2017, 2017, "dummy_pasword", UserStatus.PENDING));
+		if (id == null) {
 
-	        Email email = new Email();
-	        email.setFrom("no-reply@memorynotfound.com");
-	        email.setTo(emailCreate);
-	        email.setSubject("You are invited to join class");
+			userList.save(new User(name, category, description, emailCreate, null, null, UserRole.TEACHER, 2017, 2017,
+					"dummy_pasword", UserStatus.PENDING));
 
-	        Map emailModel = new HashMap();
-	        emailModel.put("connect_string", "http://localhost:8090/activateTeacher");
-	        emailModel.put("name", name);
-	        email.setModel(emailModel);
+			Email email = new Email();
+			email.setFrom("no-reply@memorynotfound.com");
+			email.setTo(emailCreate);
+			email.setSubject("You are invited to join class");
 
-	     
+			Map emailModel = new HashMap();
+			emailModel.put("connect_string", "http://localhost:8090/activateTeacher");
+			emailModel.put("name", name);
+			email.setModel(emailModel);
+
 			try {
 				emailService.sendSimpleMessage(email);
 			} catch (MessagingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
-		
-		
+
 			model.addAttribute("mode", "mailSent");
-		    }
-		    else
-		    {
-		    	User teacher = userList.findById(id);
-		    	teacher.setCategory(category);
-		    	teacher.setDescription(description);
-		    	teacher.setEmail(emailCreate);
-		    	teacher.setName(name);
-		    	userList.save(teacher);
-		    	
-		    	model.addAttribute("mode", "listTeacher");
-				model.addAttribute("teacherId", null);
-				model.addAttribute("teacherList", userList.findByType(UserRole.TEACHER));
-		    }
-		    
+		} else {
+			User teacher = userList.findById(id);
+			teacher.setCategory(category);
+			teacher.setDescription(description);
+			teacher.setEmail(emailCreate);
+			teacher.setName(name);
+			userList.save(teacher);
+
+			model.addAttribute("mode", "listTeacher");
+			model.addAttribute("teacherId", null);
+			model.addAttribute("teacherList", userList.findByType(UserRole.TEACHER));
+		}
+
 		return "listEditTeacher";
 	}
 
 	@RequestMapping(value = "/activateTeacher", method = RequestMethod.GET)
 	public String activateTeacher(Model model) {
-		
+
 		return "activateTeacher";
 	}
-	
-	
+
 }
