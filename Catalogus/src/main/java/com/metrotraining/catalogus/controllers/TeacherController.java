@@ -35,6 +35,10 @@ public class TeacherController {
 		if (id != null) {
 			model.addAttribute("teacher", userList.findById(id));
 		}
+		else {
+			User teacher = new User("", "", "", UserRole.TEACHER);
+			model.addAttribute("teacher", teacher);
+		}
 		return "listEditTeacher";
 	}
 
@@ -55,8 +59,9 @@ public class TeacherController {
 			@RequestParam(value = "category") String category,
 			@RequestParam(value = "description") String description,
 			@RequestParam(value = "teacherId", required = false) Long id, Model model) {
-
-		if (id == null) {
+		
+		System.out.println("id: " + id);
+		if (id == 0) {
 
 			userList.save(new User(name, category, description, emailCreate, null, null, UserRole.TEACHER, 2017, 2017,
 					"dummy_pasword", UserStatus.PENDING));
