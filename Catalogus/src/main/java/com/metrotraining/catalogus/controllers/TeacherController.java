@@ -31,9 +31,13 @@ public class TeacherController {
 
 	@RequestMapping(value = "/editTeacher", method = RequestMethod.GET)
 	public String editTeacherPart(@RequestParam(value = "teacherId", required = false) Long id, Model model) {
-		model.addAttribute("mode", "invite");
+		
 		if (id != null) {
 			model.addAttribute("teacher", userList.findById(id));
+			model.addAttribute("mode", "edit");
+		}
+		else {
+			model.addAttribute("mode", "invite");
 		}
 		return "listEditTeacher";
 	}
@@ -58,7 +62,7 @@ public class TeacherController {
 
 		if (id == null) {
 
-			userList.save(new User(name, category, description, emailCreate, null, null, UserRole.TEACHER, 2017, 2017,
+			userList.save(new User(name, category, description, emailCreate, null, null, UserRole.TEACHER, 0, 0,
 					"dummy_pasword", UserStatus.PENDING));
 
 			Email email = new Email();
