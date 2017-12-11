@@ -34,7 +34,7 @@ public class UserController {
 						  @RequestParam(value="password") String password,
 						  Model model) {
 		
-		if( userRepository.existsByEmail(email)) {
+		if( userRepository.existsByEmailAndPassword(email,password)) {
 			return "main";
 		}
 		else {

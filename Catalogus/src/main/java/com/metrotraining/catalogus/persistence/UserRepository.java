@@ -10,7 +10,7 @@ import com.metrotraining.catalogus.pojos.UserRole;
 public interface UserRepository extends JpaRepository<User, Long> {
 	
 
-	public boolean existsByEmail(String email);
+	public boolean existsByEmailAndPassword(String email,String password);
 
 	public List<User> findByType(UserRole type);
 	
