@@ -33,8 +33,10 @@ public class UserController {
 	public String main(   @RequestParam(value="email") String email, 
 						  @RequestParam(value="password") String password,
 						  Model model) {
-		System.out.println("suntem in main " + userRepository.existsByEmail(email));
-		if( userRepository.existsByEmail(email)) {
+		System.out.println("suntem in main " + userRepository.existsByEmailAndPassword(email,password));
+		if( userRepository.existsByEmailAndPassword(email,password)) {
+			User userLogin = userRepository.findByEmailAndPassword(email,password);
+			model.addAttribute("editUser",userLogin);
 			return "editUser";
 		}
 		else {
@@ -57,10 +59,14 @@ public class UserController {
 		System.out.println(name +" " + email + " " + password);
 		User userToSave = new User(name,email,password,UserRole.ADMIN);
 		model.addAttribute("user", userToSave);
+
+		
 		userService.save(userToSave);
 		//model.addAttribute("userType", new ArrayList<UserRole>(Arrays.asList(UserRole.values())) );
 
-		return "listEditTeacher"; // "mainScreen"
+	
+		
+		return "redirect:listTeacher"; // "mainScreen"
 		
 	}
 	

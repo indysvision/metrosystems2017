@@ -7,7 +7,7 @@
 <body>
 <form action = "/editare">
   <div class="form-group">
- <!--   <input th:value = "${editUser.id}" id="id" name="id" type = "hidden"/> -->
+   <input th:value = "${editUser.id}" id="id" name="id" type = "hidden"/> 
    <input th:value = "${mode}" id="mode" name="mode" type = "hidden"/>
    <input th:value = "${originalMode}" id="originalMode" name="originalMode" type = "hidden"/>
       <label class="control-label col-sm-2"> Name</label>
@@ -49,5 +49,9 @@
 <div>
  <a  th:href="@{/return(id=(${id}), mode='exit')}" > <button type="submit" class="btn btn-default">Return</button></a>
 </div>
+<div>
+ <a  th:href="@{/sendMail}" > <button type="submit" class="btn btn-default">Send Email</button></a>
+</div>
+
 </body>
 </html>

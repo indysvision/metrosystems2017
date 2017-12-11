@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Invite Teacher</title>
+</head>
+<body>
+
+ <div class="container">
+ <div class="row">
+               <div class="col-xs-12" style="height:50px;"></div>
+            </div>
+            <div class="row">
+               <div class="col-xs-12" style="height:50px;"></div>
+            </div>
+            
+	      <div class="row">
+            <form action = "/sendMail"  method = "post">
+           
+               <div class="row">
+                  <div class="col-xs-3">          
+                     <input type="text" class="form-control" id="email_list" placeholder="Email List" name="email_list" required="true"/>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-12" style="height:5px;"></div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-3">          
+                     <input  type="text" class="form-control" id="notes"  name="notes"  required="true"/>
+                  </div>
+               </div>
+               
+               
+               <div class="row">
+                  <div class="col-xs-12" style="height:5px;"></div>
+               </div>
+
+               <div class="row">
+                  <div class="col-xs-3">
+                     <input type="submit" class="btn btn-info" id="sendBtn" value="Send"/>
+                  </div>
+                
+               </div>
+            </form>
+         </div>
+
+</div>
+
+
+</body>
+</html>
