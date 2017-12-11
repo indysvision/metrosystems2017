@@ -69,4 +69,5 @@ public class UserController {
 		return "redirect:listTeacher"; // "mainScreen"
 		
 	}
+}
 	
