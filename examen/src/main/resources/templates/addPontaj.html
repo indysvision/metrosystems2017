@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1"/>
+	<title>Adauga Pontaj</title>
+	<!--  <link href="css/bootstrap.min.css" rel="stylesheet"/> -->
+</head>
+<body>
+	
+<form action="/adaugare" method="get">
+  <div class="form-group col-md-2">
+    <label for="dataStart">START</label>
+    <input type="text" name="dataStart" required="true" class="form-control" id="dataStart" th:value = "${defaultDate}"/>
+  </div>
+  <div class="form-group col-md-2">
+    <label for="dataStart">END</label>
+    <input type="text" name="dataEnd" required="true" class="form-control" id="dataEnd" th:value = "${defaultDate}"/>
+  </div>
+  <div class="container">
+   <input th:value = "${luna}" id="luna" name="luna" type = "hidden"/>
+   <input th:value = "${mode}" id="mode" name="mode" type = "hidden"/>
+   <input th:value = "${originalMode}" id="originalMode" name="originalMode" type = "hidden"/>
+  </div>
+  <div class="container">
+   <a  th:href="@{/adaugare(luna=(${luna}), mode='edit',  originalMode = 'view', dataStart=(${dataStart}), dataEnd=(${dataEnd}))}" > 
+	 <button type="submit" class="btn btn-primary">OK</button>
+   </a>
+  </div>
+<div class="container">
+ <a  th:href="@{/return(luna=(${luna}), mode='exit')}" > <button type="submit" class="btn btn-default">Return</button></a>
+</div> 
+
+</form>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/> 
+</body>
+</html>
